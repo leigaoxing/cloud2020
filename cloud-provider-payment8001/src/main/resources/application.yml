@@ -20,17 +20,17 @@ eureka:
     fetchRegistry: true
     service-url:
 #      defaultZone: http://localhost:7001/eureka #单机版
-#      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka  #集群版
-      defaultZone: http://eureka7001.com:7001/eureka #集群版
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka  #集群版
+#      defaultZone: http://eureka7001.com:7001/eureka #单机版
   instance:
     instance-id: payment8001
     prefer-ip-address: true # 访问路径可以显示 IP 地址
     # 心跳检测与续约时间
     # 开发时设置小些，保证服务关闭后注册中心能及时剔除服务
     # Eureka 客户端向服务端发送心跳的时间间隔，单位为秒（默认30秒）
-    lease-renewal-interval-in-seconds: 1
+#    lease-renewal-interval-in-seconds: 1
     # Eureka 服务端在收到最后一次心跳后等待时间上限，单位为秒（默认 90秒），超时将剔除服务
-    lease-expiration-duration-in-seconds: 2
+#    lease-expiration-duration-in-seconds: 2
 
 mybatis:
   mapperLocations: classpath:mapper/*.xml

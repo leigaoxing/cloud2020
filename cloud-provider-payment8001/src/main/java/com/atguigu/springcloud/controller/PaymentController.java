@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
- *
  * @author: gaoxinglei
  * @date: 2020/5/13
  */
@@ -70,8 +70,13 @@ public class PaymentController {
         }
     }
 
+    /**
+     * 服务发现，查看注册服务的一些信息
+     *
+     * @return
+     */
     @GetMapping("/payment/discovery")
-    public Object discovery(){
+    public Object discovery() {
         List<String> services = discoveryClient.getServices();
         for (String service : services) {
             log.info("***element: " + service);
@@ -81,5 +86,30 @@ public class PaymentController {
             log.info(instance.getServiceId() + "\t" + instance.getHost() + "\t" + instance.getPort() + "\t" + instance.getUri());
         }
         return this.discoveryClient;
+    }
+
+    /**
+     * 测试手写负载均衡算法
+     *
+     * @return
+     */
+    @GetMapping("/payment/lb")
+    public String paymentLb() {
+        return serverPort;
+    }
+
+    /**
+     * 测试 openfeign 超时控制
+     * 默认 服务调用 1 秒钟之内，超过 1 秒就会抛出异常
+     * @return
+     */
+    @GetMapping("/payment/feign/timeout")
+    public String paymentFeignTimeout(){
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return serverPort;
     }
 }

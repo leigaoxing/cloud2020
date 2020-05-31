@@ -61,4 +61,14 @@ public class PaymentController {
             return new CommonResult(444, "没有对应的记录，查询 id：" + id);
         }
     }
+
+    /**
+     * 测试手写负载均衡算法
+     *
+     * @return
+     */
+    @GetMapping("/payment/lb")
+    public String paymentLb() {
+        return serverPort;
+    }
 }

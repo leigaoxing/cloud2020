@@ -13,8 +13,8 @@ eureka:
       # 设置与 Eureka Server 交互的地址，查询服务和注册服务都需要依赖这个地址
       defaultZone: http://eureka7001.com:7001/eureka/ # 单机设置自己地址
 #      defaultZone: http://eureka7002.com:7002/eureka/ # 集群设置其他节点地址
-  server:
+#  server:
     # 关闭自我保护机制，保障不可用服务被及时剔除
-    enable-self-preservation: false
+#    enable-self-preservation: false
     # 维持心跳的时间 默认 60*1000
-    eviction-interval-timer-in-ms: 2000
+#    eviction-interval-timer-in-ms: 2000
